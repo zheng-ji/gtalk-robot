@@ -1,0 +1,18 @@
+robot.py:
+        机器人发送信息py文件
+main.py:
+        tornado的httpserver.
+        发送信息url：http://xxx.xxx.xxx.xxx:8090/gtalk?msg="hello"
+        web界面：http://xxx.xxx.xxx.xxx:8090/add
+
+contactlist:
+        联系人名单
+
+example:
+        测试发送功能。修改地址, 运行 php post.php 
+
+html:
+    web文件
+
+start.sh:
+        启动脚本

@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+        <title >有米机器人通讯录</title>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                    var Ptr = document.getElementById("tab").getElementsByTagName("tr");
+                    for (i = 1;i < Ptr.length + 1;i++) { 
+                    Ptr[i-1].className = (i%2>0)?"t1":"t2"; 
+                    }
+                    for(var i = 0;i < Ptr.length;i++) {
+                    Ptr[i].onmouseover = function(){
+                    this.tmpClass = this.className;
+                    this.className = "t3";
+
+                    };
+                    Ptr[i].onmouseout = function(){
+                    this.className = this.tmpClass;
+                    };
+                    }
+                    });
+                </script>
+
+                <style type="text/css">
+                    *{font-family:Tahoma, Arial, Helvetica, Sans-serif,"宋体";}
+                    table{
+                        width:700px;
+                        margin:0px auto;
+                        font:Georgia 11px;
+                        font-size:12px;
+                        color:#333333;
+                        text-align:center;
+                        border-collapse:collapse;/*细线表格代码*/
+                    }
+                    table td{
+                        border:1px solid #999;/*细线表格线条颜色*/
+                        height:22px;
+                    }
+                    caption{text-align:center;font-size:12px;font-weight:bold;margin:0 auto;}
+                    tr.t1 td {background-color:#fff;}/* 交替行第一行的背景色 */
+                    tr.t2 td {background-color:#eee;}/* 交替行第二行的背景色 */
+                    tr.t3 td {background-color:#ccc;}/* 鼠标经过时的背景色 */
+                    th,tfoot tr td{font-weight:bold;text-align:center;background:#c5c5c5;}
+                    th{line-height:30px;height:30px;}
+                    tfoot tr td{background:#fff;line-height:26px;height:26px;}
+                    thead{border:1px solid #999;}
+                    thead tr td{text-align:center;}
+                    #page{text-align:center;float:right;}
+                    #page a,#page a:visited{width:60px;height:22px;line-height:22px;border:1px black solid;display:block;float:left;margin:0 3px;background:#c9c9c9; text-decoration:none;}
+                    #page a:hover{background:#c1c1c1;text-decoration:none;}
+                    .grayr {padding:2px;font-size:11px;background:#fff;float:right;}
+                    .grayr a {padding:2px 5px;margin:2px;color:#000;text-decoration:none;;border:1px #c0c0c0 solid;} 
+                    .grayr a:hover {color:#000;border:1px orange solid;}
+                    .grayr a:active {color:#000;background: #99ffff}
+                    .grayr span.current {padding:2px 5px;font-weight:bold; margin:2px; color: #303030;background:#fff;border:1px orange solid;} 
+                    .grayr span.disabled {padding:2px 5px;margin:2px;color:#797979;background: #c1c1c1;border:1px #c1c1c1 solid;} 
+                    .red {color:red;font-weight:bold}
+                    #addcontact{margin-left:auto;margin-right:auto}
+                </style> 
+
+            </head> 
+
+            <body> 
+                <table> 
+                    <caption style="font-size:22px">youmi robot 通讯录</caption> 
+                    <thead>
+                        <tr>
+                            <th>Email</th><th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tab"> 
+                        {% for item in lists %}
+                        <tr>
+                            <td>{{ escape(item) }}</td>
+                            <td><a href ='/remove?email={{item}}'>移除</a></td>
+                        </tr>
+                        {% end %}
+                    </tbody> 
+                    <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                <div class="grayr">
+                                    <span class="disabled"> < </span>
+                                    <span class="current">1</span>
+                                    <!--
+                                    <a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2"> > </a>
+                                    -->
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div id="addcontact">
+                    <p>添加联系人</p>
+                    <form name="input" action="/add" method="get">
+                        Email: 
+                        <input type="text" name="email" />
+                        <input type="submit" value="Submit" />
+                    </form>
+                </div>
+            </body>
+        </html>
+
